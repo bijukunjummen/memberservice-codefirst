@@ -10,6 +10,8 @@ import org.bk.memberservice.message.MemberDetailsResponse;
 
 @WebService
 public interface MemberEndpoint {
-	@WebMethod(operationName="MemberDetailsRequest")
-	@WebResult(name="MemberDetailsResponse", targetNamespace="http://bk.org/memberservice/") MemberDetailsResponse getMemberDetails(@WebParam(name="MemberDetailsRequest") MemberDetailsRequest memberDetailsRequest);
+	@WebMethod(operationName = "MemberDetailsRequest")
+	@WebResult(name = "MemberDetailsResponse", targetNamespace = "http://bk.org/memberservice/")
+	MemberDetailsResponse getMemberDetails(
+			@WebParam(name = "MemberDetailsRequest") MemberDetailsRequest memberDetailsRequest);
 }

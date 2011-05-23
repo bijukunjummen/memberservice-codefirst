@@ -8,13 +8,28 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-	<import resource="classpath:META-INF/cxf/cxf.xml"/>
-	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
-	
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 
-	<bean id="memberendpoint" class="org.bk.memberservice.endpoint.DefaultMemberEndpoint"/>
-	
-	<jaxws:endpoint address="/memberservice" id="memberservicehttp" implementor="#memberendpoint" >
+	<bean id="usernameTokenCallback" class="org.bk.memberservice.endpoint.UsernameTokenCallback" />
+
+	<bean id="memberendpoint" class="org.bk.memberservice.endpoint.DefaultMemberEndpoint" />
+
+	<jaxws:endpoint address="/memberservice" id="memberservicehttp"
+		implementor="#memberendpoint">
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action" value="UsernameToken" />
+						<entry key="passwordType" value="PasswordDigest" />
+						<entry key="passwordCallbackRef">
+							<ref bean="usernameTokenCallback" />
+						</entry>
+					</map>
+				</constructor-arg>
+			</bean>
+		</jaxws:inInterceptors>
 	</jaxws:endpoint>
 
 </beans>

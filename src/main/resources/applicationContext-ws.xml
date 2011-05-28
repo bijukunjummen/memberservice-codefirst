@@ -15,7 +15,7 @@
 
 	<bean id="memberendpoint" class="org.bk.memberservice.endpoint.DefaultMemberEndpoint" />
 
-	<jaxws:endpoint address="/memberservice" id="memberservicehttp"
+	<jaxws:endpoint address="/memberservice-usernametoken" id="memberservice-usernametoken"
 		implementor="#memberendpoint">
 		<jaxws:inInterceptors>
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
@@ -30,6 +30,10 @@
 				</constructor-arg>
 			</bean>
 		</jaxws:inInterceptors>
+	</jaxws:endpoint>
+
+	<jaxws:endpoint address="/memberservice-nosecurity" id="memberservice-nosecurity"
+		implementor="#memberendpoint">
 	</jaxws:endpoint>
 
 </beans>

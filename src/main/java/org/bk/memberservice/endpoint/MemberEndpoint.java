@@ -8,9 +8,9 @@ import javax.jws.WebService;
 import org.bk.memberservice.message.MemberDetailsRequest;
 import org.bk.memberservice.message.MemberDetailsResponse;
 
-@WebService
+@WebService(targetNamespace="http://bk.org/memberservice/")
 public interface MemberEndpoint {
-	@WebMethod(operationName = "MemberDetailsRequest")
+	@WebMethod(operationName = "getMemberDetails")
 	@WebResult(name = "MemberDetailsResponse", targetNamespace = "http://bk.org/memberservice/")
 	MemberDetailsResponse getMemberDetails(
 			@WebParam(name = "MemberDetailsRequest") MemberDetailsRequest memberDetailsRequest);

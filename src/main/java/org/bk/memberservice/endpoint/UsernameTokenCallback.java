@@ -15,11 +15,9 @@ public class UsernameTokenCallback implements CallbackHandler {
 			UnsupportedCallbackException {
 		Callback callback = callbacks[0];
 		WSPasswordCallback pc = (WSPasswordCallback) callback;
+		
+		//Retrieve password for user from local store and set it here...
+		//Hardcoding to test for the test scenario..
 		pc.setPassword("test");
-		System.out.println("Received cred: " + pc.getIdentifier() + " : " + pc.getPassword());
-//		boolean isValid = true;
-//		if (!isValid) {
-//			throw new IOException("Bad Credentials");
-//		}
 	}
 }

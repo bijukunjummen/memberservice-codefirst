@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "MemberDetailsRequest", namespace="http://bk.org/memberservice/")
 public class MemberDetailsRequest {
 
+    private String id;
+    
 	public MemberDetailsRequest() {
 	}
 
@@ -15,7 +17,7 @@ public class MemberDetailsRequest {
 		this.id = id;
 	}
 
-	private String id;
+	
 
 	public String getId() {
 		return id;

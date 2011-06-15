@@ -8,7 +8,7 @@ import org.bk.memberservice.service.MemberManager;
 import org.bk.memberservice.types.MemberDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@WebService(endpointInterface="org.bk.memberservice.endpoint.MemberEndpoint")
+@WebService(serviceName="MemberService", endpointInterface="org.bk.memberservice.endpoint.MemberEndpoint", targetNamespace="http://bk.org/memberservice/")
 public class DefaultMemberEndpoint implements MemberEndpoint {
 	@Autowired private MemberManager memberManager;
 	

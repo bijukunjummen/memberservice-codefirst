@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project name="memberservice-nosecurity" resourceRoot="" soapui-version="3.6.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="DefaultMemberEndpointServiceSoapBinding" type="wsdl" bindingName="{http://endpoint.memberservice.bk.org/}DefaultMemberEndpointServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity?wsdl"><con:part><con:url>http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="DefaultMemberEndpointService" targetNamespace="http://endpoint.memberservice.bk.org/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://endpoint.memberservice.bk.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<con:soapui-project name="memberservice-nosecurity" resourceRoot="" soapui-version="3.6.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MemberServiceSoapBinding" type="wsdl" bindingName="{http://bk.org/memberservice/}MemberServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity?wsdl"><con:part><con:url>http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="MemberService" targetNamespace="http://bk.org/memberservice/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://bk.org/memberservice/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <wsdl:types>
-    <xs:schema elementFormDefault="unqualified" targetNamespace="http://endpoint.memberservice.bk.org/" version="1.0" xmlns:ns1="http://bk.org/memberservice/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:import namespace="http://bk.org/memberservice/"/>
-      <xs:element name="MemberDetailsRequest" type="tns:MemberDetailsRequest"/>
-      <xs:element name="MemberDetailsRequestResponse" type="tns:MemberDetailsRequestResponse"/>
-      <xs:complexType name="MemberDetailsRequest">
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://bk.org/memberservice/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="MemberDetail" type="tns:memberDetail"/>
+      <xs:element name="MemberDetailsRequest" type="tns:memberDetailsRequest"/>
+      <xs:element name="MemberDetailsResponse" type="tns:memberDetailsResponse"/>
+      <xs:element name="getMemberDetails" type="tns:getMemberDetails"/>
+      <xs:element name="getMemberDetailsResponse" type="tns:getMemberDetailsResponse"/>
+      <xs:complexType name="getMemberDetails">
         <xs:sequence>
           <xs:element minOccurs="0" name="MemberDetailsRequest" type="tns:memberDetailsRequest"/>
         </xs:sequence>
@@ -15,14 +17,14 @@
           <xs:element minOccurs="0" name="id" type="xs:string"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="MemberDetailsRequestResponse">
+      <xs:complexType name="getMemberDetailsResponse">
         <xs:sequence>
-          <xs:element minOccurs="0" ref="ns1:MemberDetailsResponse"/>
+          <xs:element minOccurs="0" ref="tns:MemberDetailsResponse"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="memberDetailsResponse">
         <xs:sequence>
-          <xs:element minOccurs="0" ref="ns1:memberdetail"/>
+          <xs:element form="qualified" minOccurs="0" name="memberdetail" type="tns:memberDetail"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="memberDetail">
@@ -34,52 +36,45 @@
         </xs:sequence>
       </xs:complexType>
     </xs:schema>
-    <xs:schema targetNamespace="http://bk.org/memberservice/" version="1.0" xmlns:ns1="http://endpoint.memberservice.bk.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:import namespace="http://endpoint.memberservice.bk.org/"/>
-      <xs:element name="MemberDetail" type="ns1:memberDetail"/>
-      <xs:element name="MemberDetailsRequest" type="ns1:memberDetailsRequest"/>
-      <xs:element name="MemberDetailsResponse" type="ns1:memberDetailsResponse"/>
-      <xs:element name="memberdetail" type="ns1:memberDetail"/>
-    </xs:schema>
   </wsdl:types>
-  <wsdl:message name="MemberDetailsRequestResponse">
-    <wsdl:part element="tns:MemberDetailsRequestResponse" name="parameters"></wsdl:part>
+  <wsdl:message name="getMemberDetails">
+    <wsdl:part element="tns:getMemberDetails" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="MemberDetailsRequest">
-    <wsdl:part element="tns:MemberDetailsRequest" name="parameters"></wsdl:part>
+  <wsdl:message name="getMemberDetailsResponse">
+    <wsdl:part element="tns:getMemberDetailsResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:portType name="MemberEndpoint">
-    <wsdl:operation name="MemberDetailsRequest">
-      <wsdl:input message="tns:MemberDetailsRequest" name="MemberDetailsRequest"></wsdl:input>
-      <wsdl:output message="tns:MemberDetailsRequestResponse" name="MemberDetailsRequestResponse"></wsdl:output>
+    <wsdl:operation name="getMemberDetails">
+      <wsdl:input message="tns:getMemberDetails" name="getMemberDetails"></wsdl:input>
+      <wsdl:output message="tns:getMemberDetailsResponse" name="getMemberDetailsResponse"></wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="DefaultMemberEndpointServiceSoapBinding" type="tns:MemberEndpoint">
+  <wsdl:binding name="MemberServiceSoapBinding" type="tns:MemberEndpoint">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="MemberDetailsRequest">
+    <wsdl:operation name="getMemberDetails">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="MemberDetailsRequest">
+      <wsdl:input name="getMemberDetails">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="MemberDetailsRequestResponse">
+      <wsdl:output name="getMemberDetailsResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="DefaultMemberEndpointService">
-    <wsdl:port binding="tns:DefaultMemberEndpointServiceSoapBinding" name="DefaultMemberEndpointPort">
+  <wsdl:service name="MemberService">
+    <wsdl:port binding="tns:MemberServiceSoapBinding" name="DefaultMemberEndpointPort">
       <soap:address location="http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="MemberDetailsRequest" bindingOperationName="MemberDetailsRequest" type="Request-Response" outputName="MemberDetailsRequestResponse" inputName="MemberDetailsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:end="http://endpoint.memberservice.bk.org/">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="getMemberDetails" bindingOperationName="getMemberDetails" type="Request-Response" outputName="getMemberDetailsResponse" inputName="getMemberDetails" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/memberservice-codefirst/webservices/memberservice-nosecurity</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mem="http://bk.org/memberservice/">
    <soapenv:Header/>
    <soapenv:Body>
-      <end:MemberDetailsRequest>
+      <mem:getMemberDetails>
          <!--Optional:-->
          <MemberDetailsRequest>
             <!--Optional:-->
-            <id>?</id>
+            <id>1</id>
          </MemberDetailsRequest>
-      </end:MemberDetailsRequest>
+      </mem:getMemberDetails>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://endpoint.memberservice.bk.org/MemberEndpoint/MemberDetailsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://bk.org/memberservice/MemberEndpoint/getMemberDetails"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

@@ -14,7 +14,7 @@ public class DefaultMemberEndpoint implements MemberEndpoint {
 	
 	@Override
 	public MemberDetailsResponse getMemberDetails(MemberDetailsRequest memberDetailsRequest) {
-		MemberDetail memberDetail = memberManager.getMemberDetails(memberDetailsRequest.getId());
+		MemberDetail memberDetail = memberManager.findByMemberId(memberDetailsRequest.getId());
 		MemberDetailsResponse response = new MemberDetailsResponse(memberDetail);
 		return response;
 	}

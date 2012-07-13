@@ -41,7 +41,9 @@ public class MemberManagerImpl implements MemberManager {
 
     @Override
     public List<MemberDetail> findByMemberName(String name) {
-        return this.memberDetailDao.findByMemberName(name);
+        List<MemberDetail> memberDetails =  this.memberDetailDao.findByMemberName(name);
+        System.out.println(memberDetails.size());
+        return memberDetails;
     }
 
     @Override

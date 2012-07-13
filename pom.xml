@@ -172,7 +172,7 @@
 		<dependency>
 		    <groupId>org.apache.ws.security</groupId>
 		    <artifactId>wss4j</artifactId>
-		    <version>1.6.0</version>
+		    <version>1.6.6</version>
 		</dependency>		
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -282,10 +282,10 @@
 		</plugins>
 	</build>
 	<properties>
-		<spring.version>3.0.5.RELEASE</spring.version>
+		<spring.version>3.1.1.RELEASE</spring.version>
 		<junit.version>4.8.1</junit.version>
 		<easymock.version>2.4</easymock.version>
-		<cxf.version>2.4.0</cxf.version>
+		<cxf.version>2.6.1</cxf.version>
 		<aspectj.version>1.6.10</aspectj.version>
 		<slf4j.version>1.6.1</slf4j.version>		
 	</properties>

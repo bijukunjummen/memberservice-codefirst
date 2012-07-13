@@ -4,6 +4,8 @@ import javax.jws.WebService;
 
 import org.bk.memberservice.message.MemberDetailsRequest;
 import org.bk.memberservice.message.MemberDetailsResponse;
+import org.bk.memberservice.message.MemberSearchRequest;
+import org.bk.memberservice.message.MemberSearchResponse;
 import org.bk.memberservice.service.MemberManager;
 import org.bk.memberservice.types.MemberDetail;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,18 @@ public class DefaultMemberEndpoint implements MemberEndpoint {
 		MemberDetailsResponse response = new MemberDetailsResponse(memberDetail);
 		return response;
 	}
+	
+	
 
 	public void setMemberManager(MemberManager memberManager) {
 		this.memberManager = memberManager;
+	}
+
+
+
+	@Override
+	public MemberSearchResponse searchMember(MemberSearchRequest memberSearchRequest) {
+		return new MemberSearchResponse(this.memberManager.findByMemberName(memberSearchRequest.getName()));
 	}
 	
 }

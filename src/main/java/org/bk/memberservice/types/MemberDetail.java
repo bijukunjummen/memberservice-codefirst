@@ -75,4 +75,9 @@ public class MemberDetail {
     public void setId(Long id) {
         this.id = id;
     }
+    
+	@Override
+	public String toString() {
+		return "MemberDetail [id=" + id + ", name=" + name + ", phone=" + phone + ", city=" + city + ", state=" + state + "]";
+	}
 }
